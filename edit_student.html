@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Student</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-900 text-white min-h-screen flex items-center justify-center p-6">
+    <div class="max-w-md w-full bg-gray-800 rounded-xl shadow-lg p-6 border border-gray-700">
+        <h2 class="text-2xl font-bold mb-6 text-center">Edit Student Details</h2>
+        <form action="/students/update/{{ student.id }}" method="post" class="space-y-4">
+            <input type="text" name="name" value="{{ student.name }}" placeholder="Name" required
+                class="w-full p-3 bg-gray-700 rounded-lg border border-gray-600 focus:outline-none">
+            <input type="number" name="age" value="{{ student.age }}" placeholder="Age" required
+                class="w-full p-3 bg-gray-700 rounded-lg border border-gray-600 focus:outline-none">
+            <input type="text" name="gender" value="{{ student.gender }}" placeholder="Gender" required
+                class="w-full p-3 bg-gray-700 rounded-lg border border-gray-600 focus:outline-none">
+            <input type="number" name="marks" value="{{ student.marks }}" placeholder="Marks" required
+                class="w-full p-3 bg-gray-700 rounded-lg border border-gray-600 focus:outline-none">
+            <input type="text" name="course" value="{{ student.course }}" placeholder="Course" required
+                class="w-full p-3 bg-gray-700 rounded-lg border border-gray-600 focus:outline-none">
+            <input type="text" name="attendance" value="{{ student.attendance }}" placeholder="Attendance" required
+                class="w-full p-3 bg-gray-700 rounded-lg border border-gray-600 focus:outline-none">
+            <input type="text" name="image_url" value="{{ student.image_url }}" placeholder="Image URL"
+                class="w-full p-3 bg-gray-700 rounded-lg border border-gray-600 focus:outline-none">
+            <div class="flex space-x-3 pt-2">
+                <a href="/"
+                    class="w-1/2 text-center py-3 bg-gray-600 rounded-lg hover:bg-gray-500 transition">Cancel</a>
+                <button type="submit"
+                    class="w-1/2 py-3 bg-indigo-600 rounded-lg hover:bg-indigo-700 transition font-semibold">Update</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

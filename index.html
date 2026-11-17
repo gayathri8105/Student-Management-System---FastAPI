@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Student Management Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 text-gray-800 min-h-screen pb-12">
+    <header class="text-center py-10 bg-gray-900 text-white shadow-md mb-8">
+        <h1 class="text-4xl font-bold tracking-wide">Student Management Dashboard</h1>
+        <p class="text-gray-400 mt-2">Manage student information efficiently</p>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-10">
+            <a href="/students/add"
+                class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-6 py-3 rounded-xl shadow-lg transition">+
+                Add Student</a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {% for student in students %}
+            <div
+                class="bg-white rounded-2xl shadow-md p-6 flex flex-col items-center text-center border border-gray-200">
+                <div
+                    class="w-24 h-24 mb-4 rounded-full bg-gray-200 overflow-hidden flex items-center justify-center border-4 border-indigo-50 shadow-inner">
+                    {% if student.image_url %}
+                    <img src="{{ student.image_url }}" alt="{{ student.name }}" class="w-full h-full object-cover">
+                    {% else %}
+                    <span class="text-gray-400 text-xs">No Image</span>
+                    {% endif %}
+                </div>
+
+                <h3 class="text-xl font-bold mb-4 text-gray-900">{{ student.name }}</h3>
+
+                <div
+                    class="w-full space-y-2 text-sm text-gray-600 mb-6 bg-gray-50 p-3 rounded-xl border border-gray-100">
+                    <p class="flex justify-between"><span>Age:</span> <strong class="text-gray-800">{{ student.age
+                            }}</strong></p>
+                    <p class="flex justify-between"><span>Gender:</span> <strong class="text-gray-800">{{ student.gender
+                            }}</strong></p>
+                    <p class="flex justify-between"><span>Marks:</span> <strong class="text-gray-800">{{ student.marks
+                            }}</strong></p>
+                    <p class="flex justify-between"><span>Course:</span> <strong class="text-gray-800">{{ student.course
+                            }}</strong></p>
+                </div>
+
+                <div class="w-full flex items-center justify-between mb-4">
+                    <span class="text-sm font-medium text-gray-600">Attendance:</span>
+                    <span
+                        class="px-3 py-1 text-xs font-semibold rounded-full {% if student.attendance == 'Present' %} bg-emerald-100 text-emerald-700 {% else %} bg-rose-100 text-rose-700 {% endif %}">
+                        {{ student.attendance }}
+                    </span>
+                </div>
+
+                <div class="w-full flex justify-between items-center mt-auto pt-4 border-t border-gray-100">
+                    <a href="#"
+                        class="px-3 py-1 bg-purple-600 hover:bg-purple-700 text-white text-xs font-medium rounded-md shadow transition">View</a>
+                    <a href="/students/edit/{{ student.id }}"
+                        class="px-3 py-1 bg-amber-600 hover:bg-amber-700 text-white text-xs font-medium rounded-md shadow transition">Edit</a>
+                    <form action="/students/delete/{{ student.id }}" method="post" class="inline">
+                        <button type="submit"
+                            class="px-3 py-1 bg-rose-600 hover:bg-rose-700 text-white text-xs font-medium rounded-md shadow transition">Delete</button>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </main>
+</body>
+
+</html>
